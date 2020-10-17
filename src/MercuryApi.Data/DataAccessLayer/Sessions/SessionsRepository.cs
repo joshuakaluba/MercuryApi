@@ -90,13 +90,6 @@ namespace MercuryApi.Data.DataAccessLayer.Sessions
                             .OrderByDescending(session => session.DateModified)
                                 .ToListAsync();
 
-                /*
-                 var monitors =
-                    await db.Monitors
-                        .Where(monitor => monitor.ApplicationUserId == user.Id)
-                            .OrderByDescending(monitor => monitor.DateCreated)
-                                .ToListAsync();
-                 */
                 return sessions;
             }
         }
