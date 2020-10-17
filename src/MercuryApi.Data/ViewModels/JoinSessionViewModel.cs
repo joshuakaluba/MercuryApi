@@ -3,7 +3,7 @@ using System;
 
 namespace MercuryApi.Data.ViewModels
 {
-    public class JoinSessionViewModel
+    public sealed class JoinSessionViewModel
     {
         [JsonProperty("userId")]
         public Guid UserId { get; set; }

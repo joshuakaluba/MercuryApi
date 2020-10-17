@@ -4,7 +4,7 @@ using System;
 
 namespace MercuryApi.Data.ViewModels
 {
-    public class SessionOperationViewModel
+    public sealed class SessionOperationViewModel
     {
         [JsonProperty("sessionId")]
         public Guid SessionId { get; set; }

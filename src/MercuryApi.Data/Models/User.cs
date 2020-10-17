@@ -3,7 +3,7 @@ using System;
 
 namespace MercuryApi.Data.Models
 {
-    public class User : Auditable
+    public sealed class User : Auditable
     {
         public User()
         {

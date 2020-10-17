@@ -1,6 +1,6 @@
 ﻿namespace MercuryApi.Data.Models
 {
-    public class Session : Auditable
+    public sealed class Session : Auditable
     {
         public string Name { get; set; }
 

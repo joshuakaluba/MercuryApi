@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace MercuryApi.Data.ViewModels
 {
-    public class UserViewModel
+    public sealed class UserViewModel
     {
         [JsonProperty("id")]
         public string Id { get; set; }
