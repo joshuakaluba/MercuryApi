@@ -1,0 +1,14 @@
+version: "3.3"
+
+services:
+  mercury_api:
+    build: ./
+    restart: unless-stopped
+    ports:
+      - ${MERCURY_API_APPLICATION_PORT}:${MERCURY_API_APPLICATION_PORT}
+    environment:
+      MERCURY_API_DB_HOST: ${MERCURY_API_DB_HOST}
+      MERCURY_API_APPLICATION_PORT: ${MERCURY_API_APPLICATION_PORT}
+      MERCURY_API_DB_NAME: ${MERCURY_API_DB_NAME}
+      MERCURY_API_DB_USER: ${MERCURY_API_DB_USER}
+      MERCURY_API_DB_PASSWORD: ${MERCURY_API_DB_PASSWORD}
