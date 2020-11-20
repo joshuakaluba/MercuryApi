@@ -46,11 +46,6 @@ namespace MercuryApi.Data.DataAccessLayer.Sessions
                         .Where(s => s.UserId == user.Id && s.SessionId == session.Id)
                             .FirstOrDefaultAsync();
 
-                if (existingUserSession != null)
-                {
-                    return;
-                }
-
                 db.UserSessions.Remove(existingUserSession);
                 await db.SaveChangesAsync();
             }
