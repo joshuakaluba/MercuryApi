@@ -11,6 +11,9 @@ namespace MercuryApi.Data.ViewModels
         [JsonProperty("capacity")]
         public int Capacity { get; set; }
 
+        [JsonProperty("currentCount")]
+        public int CurrentCount { get; set; }
+
         [JsonProperty("userId")]
         public Guid UserId { get; set; }
     }

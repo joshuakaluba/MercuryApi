@@ -145,5 +145,28 @@ namespace MercuryApi.Web.Controllers
                 return HandleError(ex);
             }
         }
+
+        // Sessions/UpdateSession
+        [HttpPut]
+        public async Task<IActionResult> UpdateSession(Guid id, [FromBody] SessionViewModel sessionViewModel)
+        {
+            try
+            {
+                var session
+                    = await _sessionsRepository.GetSession(id);
+
+                session.Capacity = sessionViewModel.Capacity;
+                session.CurrentCount = sessionViewModel.CurrentCount;
+                session.Name = sessionViewModel.Name;
+
+                await _sessionsRepository.UpdateSession(session);
+
+                return Ok(session);
+            }
+            catch (Exception ex)
+            {
+                return HandleError(ex);
+            }
+        }
     }
 }
