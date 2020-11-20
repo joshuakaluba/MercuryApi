@@ -58,7 +58,6 @@ namespace MercuryApi.Web.Controllers
                 // The will have no sessions anyways at this point
 
                 return Ok(id);
-                
             }
             catch (Exception ex)
             {

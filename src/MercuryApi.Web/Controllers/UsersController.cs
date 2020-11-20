@@ -1,5 +1,4 @@
 ﻿using MercuryApi.Data.DataAccessLayer.Users;
-using MercuryApi.Data.Enums;
 using MercuryApi.Data.Models;
 using MercuryApi.Data.ViewModels;
 using Microsoft.AspNetCore.Mvc;
