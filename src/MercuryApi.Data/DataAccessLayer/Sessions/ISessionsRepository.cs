@@ -20,6 +20,8 @@ namespace MercuryApi.Data.DataAccessLayer.Sessions
 
         Task<IEnumerable<Session>> GetSessionsByUser(User user);
 
+        Task RemoveUserFromSession(User user, Session session);
+
         Task UpdateSession(Session session);
 
         Task<Session> UpdateSessionCount(SessionOperationViewModel sessionOperationViewModel);

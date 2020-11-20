@@ -23,7 +23,6 @@ namespace MercuryApi.Web.Controllers
             _usersRepository = usersRepository;
         }
 
-        // Sessions/GetSession
         [HttpGet]
         public async Task<IActionResult> GetSession(string id)
         {
@@ -39,7 +38,6 @@ namespace MercuryApi.Web.Controllers
             }
         }
 
-        // Sessions/GetSessionsByUserId
         [HttpGet]
         public async Task<IActionResult> GetSessionsByUserId(string id)
         {
@@ -65,7 +63,6 @@ namespace MercuryApi.Web.Controllers
             }
         }
 
-        // Sessions/Create
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] SessionViewModel sessionViewModel)
         {
@@ -101,9 +98,8 @@ namespace MercuryApi.Web.Controllers
             }
         }
 
-        // Sessions/JoinSession
         [HttpPost]
-        public async Task<IActionResult> JoinSession([FromBody] JoinSessionViewModel joinSessionViewModel)
+        public async Task<IActionResult> JoinSession([FromBody] SessionMembershipViewModel joinSessionViewModel)
         {
             try
             {
@@ -127,7 +123,31 @@ namespace MercuryApi.Web.Controllers
             }
         }
 
-        // Sessions/UpdateCount
+        [HttpPost]
+        public async Task<IActionResult> LeaveSession([FromBody] SessionMembershipViewModel joinSessionViewModel)
+        {
+            try
+            {
+                var user = await _usersRepository.FindUser(joinSessionViewModel.UserId);
+
+                var session = await _sessionsRepository.GetSession(joinSessionViewModel.SessionId);
+
+                if (user != null && session != null)
+                {
+                    await _sessionsRepository.RemoveUserFromSession(user, session);
+                    return Ok(session);
+                }
+                else
+                {
+                    return BadRequest(new ErrorMessage("Unable to leave session"));
+                }
+            }
+            catch (Exception ex)
+            {
+                return HandleError(ex);
+            }
+        }
+
         [HttpPost]
         public async Task<IActionResult> UpdateCount([FromBody] SessionOperationViewModel sessionOperationViewModel)
         {
@@ -145,14 +165,12 @@ namespace MercuryApi.Web.Controllers
             }
         }
 
-        // Sessions/UpdateSession
         [HttpPut]
         public async Task<IActionResult> UpdateSession(Guid id, [FromBody] SessionViewModel sessionViewModel)
         {
             try
             {
-                var session
-                    = await _sessionsRepository.GetSession(id);
+                var session = await _sessionsRepository.GetSession(id);
 
                 session.Capacity = sessionViewModel.Capacity;
                 session.CurrentCount = sessionViewModel.CurrentCount;

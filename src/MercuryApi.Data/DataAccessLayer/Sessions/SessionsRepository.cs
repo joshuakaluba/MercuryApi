@@ -37,6 +37,25 @@ namespace MercuryApi.Data.DataAccessLayer.Sessions
             }
         }
 
+        public async Task RemoveUserFromSession(User user, Session session)
+        {
+            using (var db = new MercuryDataContext())
+            {
+                var existingUserSession
+                    = await db.UserSessions
+                        .Where(s => s.UserId == user.Id && s.SessionId == session.Id)
+                            .FirstOrDefaultAsync();
+
+                if (existingUserSession != null)
+                {
+                    return;
+                }
+
+                db.UserSessions.Remove(existingUserSession);
+                await db.SaveChangesAsync();
+            }
+        }
+
         public async Task CreateSession(Session session)
         {
             using (var db = new MercuryDataContext())
@@ -92,7 +111,7 @@ namespace MercuryApi.Data.DataAccessLayer.Sessions
 
                 return sessions;
             }
-        }
+        }        
 
         public async Task UpdateSession(Session session)
         {
