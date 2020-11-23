@@ -141,6 +141,7 @@ namespace MercuryApi.Data.DataAccessLayer.Sessions
                 }
 
                 session.DateModified = DateTime.UtcNow;
+                session.UpdatedTimesCount = session.UpdatedTimesCount + 1;
 
                 db.Sessions.Update(session);
                 await db.SaveChangesAsync();
