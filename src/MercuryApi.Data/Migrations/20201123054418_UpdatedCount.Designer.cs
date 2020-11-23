@@ -3,14 +3,16 @@ using System;
 using MercuryApi.Data.DataContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MercuryApi.Data.Migrations
 {
     [DbContext(typeof(MercuryDataContext))]
-    partial class MercuryDataContextModelSnapshot : ModelSnapshot
+    [Migration("20201123054418_UpdatedCount")]
+    partial class UpdatedCount
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

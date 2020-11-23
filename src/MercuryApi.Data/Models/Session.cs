@@ -8,6 +8,8 @@
 
         public int CurrentCount { get; set; }
 
+        public int UpdatedTimesCount { get; set; }
+
         public string ShortSessionCode { get; set; }
     }
 }
