@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Logging;
-using NLog.Web;
 using System;
 
 namespace MercuryApi.Web
@@ -11,21 +10,7 @@ namespace MercuryApi.Web
     {
         public static void Main(string[] args)
         {
-            var logger = NLogBuilder.ConfigureNLog("nlog.config").GetCurrentClassLogger();
-            try
-            {
-                logger.Debug("Initialized from main");
-                BuildWebHost(args).Run();
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex, "Stopped program because of exception");
-                throw;
-            }
-            finally
-            {
-                NLog.LogManager.Shutdown();
-            }
+            BuildWebHost(args).Run();
         }
 
         public static IWebHost BuildWebHost(string[] args) =>
@@ -36,7 +21,6 @@ namespace MercuryApi.Web
                     logging.ClearProviders();
                     logging.SetMinimumLevel(LogLevel.Trace);
                 })
-                .UseNLog()
                 .UseUrls($"http://*:{ApplicationConfig.Port}")
                 .Build();
     }
