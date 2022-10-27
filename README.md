@@ -10,7 +10,7 @@ then run the application using
 
 `docker-compose up -d`
 
-if you are using docker compose or
+if you are using docker-compose or
 
 ```
 
